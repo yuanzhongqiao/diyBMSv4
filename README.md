@@ -1,138 +1,88 @@
-# diyBMS v4
-
-Version 4 of the diyBMS
-
-Do it yourself battery management system for Lithium ion battery packs/cells
-
-More discussion [Open Energy Monitor Forum](https://community.openenergymonitor.org/c/hardware/diybms/53)
-
-If you are looking for version 3 (obsolete) of this project take a look [here](https://github.com/stuartpittaway/diyBMS)
-
-THIS REPOSITORY CONTAINS THE HARDWARE FOR THE SYSTEM
-
-# Videos on how to use and build
-
-[YouTube playlist](https://youtube.com/playlist?list=PLHhwQCDPuRcZW3u0jJucsiCCsUbNbMy-c) for DIYBMS videos
-
-[Building & ordering the PCB from JLCPCB](https://youtu.be/E1OS0ZOmOT8)
-
-If you order a PCB, please use my affiliate link to help support this project [JLCPCB](https://jlcpcb.com/RSZ)
-
-# Support
-
-If you find the BMS useful, please consider buying me a beer, check out Patron for more information
-
-https://patreon.com/StuartP
-
-# HARDWARE
-
-This repository contains the hardware designs, generally in KiCad format.  Unless you are changing the design, you don't need to use/install KiCad, just use the precompiled files.
-
-The folder structure in the repository contains:
-
-## Controller Designs
-* ControllerCircuit - ESP32 controller board (newest design)
-* ESP8266ControllerCircuit - [legacy] the circuit board for the legacy ESP8266 based controller
-
-## Modules for Controller
-* ModuleV490-AllInOne - Latest multi cell monitoring solution, recommended for 8 to 16S cell configurations.  No balancing, requires ModuleV490-PassiveBal passive balancer daughterboard if this is needed.
-* ModuleV490-PassiveBal - daughter board for the V490 multi-cell monitoring solution, provides 200mA per cell balance current, heatsink and fan control.
-* ModuleV450 - the latest SINGLE module design, using ATTINY1624 chip. Recommended for both hand soldering or mass production
-* ModuleV440 - [legacy] the module circuit board V4.40, final board using ATTINY841 chip
-* ModuleV400 - [legacy] the module circuit board V4.00, designed for easier hand soldering (larger parts)
-* ModuleV421 - [legacy] the module circuit board V4.21, designed for mass production using JLCPCB assembly service
-
-If you use this coupon code when you place a JLCPCB order
-
-JLC-Stuart
-
-and this link
-
-https://jlcpcb.com/RSZ
-
-you will get a discount and I get a very small amount of credit for every 30 orders, which helps to support the cost of prototyping new designs and adding new features.
-
-### ESP32 Controller 
-
-The latest version of the controller uses an ESP32 and supports CANBUS, RS485, SD CARD logging, relays, SSR outputs, multiple inputs, AVR programmer and much more.
-
-Although the hardware is complete, not all features are usable from the software, this will be developed and improved over time to make use of the hardware.
-
-[Bill of Materials](./ControllerCircuit/ComponentListBOM.md)
-
-<img src="ControllerCircuit/export/ControllerCircuit-top.png" alt="circuit board" width="512"/>
-
-### Module V4.50
-
-The latest version of the module hardware uses the ATTINY1624 chip - part of the tinyAVR2 range.
-
-This board requires an UPDI programmer/device - see the instructions in the code repository for how to program the boards once built.
-
-The parts are no smaller than 0805 size (about 2mm!) which is probably the smallest size you want to attempt to hand solder.
-
-<img src="./ModuleV450/export/ModuleV450-top.png" alt="circuit board" width="200"/>
-
-Specifications are similar to the V4.40 board.
-
-
-### Module V4.40
-
-V4.40 is the last board to use the ATTINY841 chip - V4.50 is the newest design if you are starting fresh.
-
-<img src="./ModuleV440/export/ModuleV440-top.png" alt="circuit board" width="200"/>
-
-In addition, the hardware has a higher balance current, fuse and TVS diode to help with voltage spikes.  
-Most importantly, an external crystal has been added to the micro controller (attiny841) which means the device is more reliable in low voltage situations.
-
-The balance current for V4.40 modules is as follows:
-* 1.27A at 4.2V (5.35W)
-* 1.21A at 4.0V (4.84W)
-* 1.13A at 3.75V (4.26W)
-
-The module is physically larger than previous modules, this aids heat dispersal but also features a "snap off" external temperature daughter board for use in cell temperature monitoring.
-
-You will also need to order [these parts](./ModuleV440/HandAssemblyParts.md)
-
-# CODE/SOFTWARE
-
-Software and code for the modules and controller can now be found in a seperate repo
-
-For the latest controller (ESP32)
-[diyBMSv4ESP32](https://github.com/stuartpittaway/diyBMSv4ESP32)
-
-For the legacy controller (ESP8266)
-[diyBMSv4Code](https://github.com/stuartpittaway/diyBMSv4Code)
-
-# WARNING
-
-This is a DIY product/solution so don’t use this for safety critical systems or in any situation where there could be a risk to life.  
-
-There is no warranty, it may not work as expected or at all.
-
-The use of this project is done so entirely at your own risk.  It may involve electrical voltages which could kill - if in doubt, seek help.
-
-The use of this project may not be compliant with local laws or regulations - if in doubt, seek help.
-
-
-# License
-
-This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England & Wales License.
-
-https://creativecommons.org/licenses/by-nc-sa/2.0/uk/
-
-You are free to:
-* Share — copy and redistribute the material in any medium or format
-* Adapt — remix, transform, and build upon the material
-The licensor cannot revoke these freedoms as long as you follow the license terms.
-
-Under the following terms:
-* Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-* Non-Commercial — You may not use the material for commercial purposes.
-* ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
-* No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
-
-
-Notices:
-You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable exception or limitation.
-
-No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">diyBMS v4</font></font></h1><a id="user-content-diybms-v4" class="anchor" aria-label="永久链接：diyBMS v4" href="#diybms-v4"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">diyBMS 第 4 版</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">自行设计锂离子电池组/电池的电池管理系统</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">更多讨论</font></font><a href="https://community.openenergymonitor.org/c/hardware/diybms/53" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开放能源监测论坛</font></font></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果你正在寻找该项目的版本 3（已过时），请查看</font></font><a href="https://github.com/stuartpittaway/diyBMS"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此处</font></font></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该存储库包含系统硬件</font></font></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">关于如何使用和构建的视频</font></font></h1><a id="user-content-videos-on-how-to-use-and-build" class="anchor" aria-label="永久链接：关于如何使用和构建的视频" href="#videos-on-how-to-use-and-build"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://youtube.com/playlist?list=PLHhwQCDPuRcZW3u0jJucsiCCsUbNbMy-c" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">DIYBMS 视频的</font><a href="https://youtube.com/playlist?list=PLHhwQCDPuRcZW3u0jJucsiCCsUbNbMy-c" rel="nofollow"><font style="vertical-align: inherit;">YouTube 播放列表</font></a></font></p>
+<p dir="auto"><a href="https://youtu.be/E1OS0ZOmOT8" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">从 JLCPCB 构建和订购 PCB</font></font></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您订购 PCB，请使用我的附属链接来帮助支持此项目</font></font><a href="https://jlcpcb.com/RSZ" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JLCPCB</font></font></a></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支持</font></font></h1><a id="user-content-support" class="anchor" aria-label="固定链接：支持" href="#support"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您发现 BMS 有用，请考虑给我买杯啤酒，查看 Patron 了解更多信息</font></font></p>
+<p dir="auto"><a href="https://patreon.com/StuartP" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://patreon.com/StuartP</font></font></a></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">硬件</font></font></h1><a id="user-content-hardware" class="anchor" aria-label="固定链接：硬件" href="#hardware"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此存储库包含硬件设计，通常为 KiCad 格式。除非您要更改设计，否则无需使用/安装 KiCad，只需使用预编译的文件即可。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">存储库中的文件夹结构包含：</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">控制器设计</font></font></h2><a id="user-content-controller-designs" class="anchor" aria-label="永久链接：控制器设计" href="#controller-designs"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ControllerCircuit - ESP32 控制器板（最新设计）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ESP8266ControllerCircuit - [legacy] 基于 ESP8266 的传统控制器的电路板</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">控制器模块</font></font></h2><a id="user-content-modules-for-controller" class="anchor" aria-label="永久链接：控制器模块" href="#modules-for-controller"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ModuleV490-AllInOne - 最新的多电池监控解决方案，推荐用于 8 至 16S 电池配置。无平衡，如果需要，则需要 ModuleV490-PassiveBal 被动平衡器子板。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ModuleV490-PassiveBal - V490 多电池监控解决方案的子板，提供每电池 200mA 的平衡电流、散热器和风扇控制。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ModuleV450 - 最新的单模块设计，采用 ATTINY1624 芯片。建议用于手工焊接或批量生产</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ModuleV440 - [遗留] 模块电路板 V4.40，使用 ATTINY841 芯片的最终电路板</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ModuleV400 - [旧版] 模块电路板 V4.00，专为更简便的手工焊接而设计（较大的部件）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ModuleV421 - [旧版] 模块电路板 V4.21，专为使用 JLCPCB 组装服务进行大规模生产而设计</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您在下 JLCPCB 订单时使用此优惠券代码</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JLC-斯图尔特</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以及此链接</font></font></p>
+<p dir="auto"><a href="https://jlcpcb.com/RSZ" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://jlcpcb.com/RSZ</font></font></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您将获得折扣，并且每 30 份订单我都会获得少量信用，这有助于支持新设计原型和添加新功能的成本。</font></font></p>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ESP32 控制器</font></font></h3><a id="user-content-esp32-controller" class="anchor" aria-label="永久链接：ESP32 控制器" href="#esp32-controller"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该控制器的最新版本使用 ESP32 并支持 CANBUS、RS485、SD CARD 记录、继电器、SSR 输出、多输入、AVR 编程器等。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">虽然硬件已经完整，但并非所有功能都可以从软件中使用，这将随着时间的推移而得到开发和改进，以充分利用硬件。</font></font></p>
+<p dir="auto"><a href="/stuartpittaway/diyBMSv4/blob/master/ControllerCircuit/ComponentListBOM.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">材料清单</font></font></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/stuartpittaway/diyBMSv4/blob/master/ControllerCircuit/export/ControllerCircuit-top.png"><img src="/stuartpittaway/diyBMSv4/raw/master/ControllerCircuit/export/ControllerCircuit-top.png" alt="电路板" width="512" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模块 V4.50</font></font></h3><a id="user-content-module-v450" class="anchor" aria-label="永久链接：模块 V4.50" href="#module-v450"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模块硬件的最新版本使用 ATTINY1624 芯片 - 属于 tinyAVR2 系列的一部分。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该板需要 UPDI 编程器/设备 - 请参阅代码存储库中的说明以了解如何在构建后对板进行编程。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这些零件不小于 0805 尺寸（约 2 毫米！），这可能是您想要尝试手工焊接的最小尺寸。</font></font></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/stuartpittaway/diyBMSv4/blob/master/ModuleV450/export/ModuleV450-top.png"><img src="/stuartpittaway/diyBMSv4/raw/master/ModuleV450/export/ModuleV450-top.png" alt="电路板" width="200" style="max-width: 100%;"></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">规格与V4.40板相似。</font></font></p>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模块V4.40</font></font></h3><a id="user-content-module-v440" class="anchor" aria-label="永久链接：模块 V4.40" href="#module-v440"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">V4.40 是最后一款使用 ATTINY841 芯片的主板 - 如果您是从头开始，那么 V4.50 是最新的设计。</font></font></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/stuartpittaway/diyBMSv4/blob/master/ModuleV440/export/ModuleV440-top.png"><img src="/stuartpittaway/diyBMSv4/raw/master/ModuleV440/export/ModuleV440-top.png" alt="电路板" width="200" style="max-width: 100%;"></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此外，硬件具有更高的平衡电流、保险丝和 TVS 二极管，有助于应对电压尖峰。</font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+最重要的是，微控制器 (attiny841) 中添加了一个外部晶体，这意味着该设备在低压情况下更加可靠。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">V4.40模块的平衡电流如下：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.2V 时为 1.27A（5.35W）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4.0V 时为 1.21A（4.84W）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3.75V 时为 1.13A（4.26W）</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该模块在物理上比以前的模块更大，这有助于散热，而且还具有“可拆卸”的外部温度子板，可用于电池温度监测。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您还需要订购</font></font><a href="/stuartpittaway/diyBMSv4/blob/master/ModuleV440/HandAssemblyParts.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这些零件</font></font></a></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码/软件</font></font></h1><a id="user-content-codesoftware" class="anchor" aria-label="永久链接：代码/软件" href="#codesoftware"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">现在可以在单独的 repo 中找到模块和控制器的软件和代码</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">对于最新的控制器（ESP32）
+ </font></font><a href="https://github.com/stuartpittaway/diyBMSv4ESP32"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">diyBMSv4ESP32</font></font></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">对于传统控制器（ESP8266）
+ </font></font><a href="https://github.com/stuartpittaway/diyBMSv4Code"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">diyBMSv4Code</font></font></a></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">警告</font></font></h1><a id="user-content-warning" class="anchor" aria-label="永久链接：警告" href="#warning"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这是一种 DIY 产品/解决方案，因此请勿将其用于安全关键系统或任何可能存在生命危险的情况。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">没有任何保证，它可能无法按预期工作或者根本无法工作。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用本项目的风险完全由您自行承担。它可能涉及致命电压 - 如有疑问，请寻求帮助。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目的使用可能不符合当地法律或法规 - 如有疑问，请寻求帮助。</font></font></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执照</font></font></h1><a id="user-content-license" class="anchor" aria-label="永久链接：许可证" href="#license"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">本作品根据 Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK：英格兰和威尔士许可证进行授权。</font></font></p>
+<p dir="auto"><a href="https://creativecommons.org/licenses/by-nc-sa/2.0/uk/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://creativecommons.org/licenses/by-nc-sa/2.0/uk/</font></font></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您可以自由地：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分享——以任何媒介或格式复制和重新分发材料</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">改编——重新混合、转换和基于材料进行创作只要您遵守许可条款，许可方就不能撤销这些自由。</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">根据以下条款：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">署名 — 您必须给予适当的署名，提供许可证链接，并表明是否进行了更改。您可以以任何合理的方式这样做，但不得以任何方式暗示许可方认可您或您的使用。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">非商业用途——您不得将该材料用于商业目的。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">相同方式共享 — 如果您对作品进行重新混合、转换或创作，则您必须在与原始作品相同的许可证下分发您的贡献。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">无额外限制——您不得采用法律条款或技术措施来合法限制他人做许可证允许的任何事情。</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">声明：对于公共领域的材料元素，或者适用的例外或限制允许您的使用，您无需遵守许可。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">不提供任何保证。许可证可能不会授予您预期用途所需的所有权限。例如，其他权利（如公开权、隐私权或道德权利）可能会限制您使用材料的方式。</font></font></p>
+</article></div>
